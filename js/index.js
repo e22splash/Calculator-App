@@ -28,6 +28,9 @@ window.addEventListener('DOMContentLoaded', function calc() {
 	CE.addEventListener('click', function() {
 		displayArea.textContent = '0';
 	});
+	C.addEventListener('click', function() {
+		displayArea.textContent = '0';
+	});
 	deletion.addEventListener('click', function() {
 		displayArea.textContent = '';
 	});
