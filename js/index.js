@@ -1,4 +1,4 @@
-alert('Mile 2 Oke');
+// alert('Mile 2 Oke'); //testing js connectivity
 
 window.addEventListener('DOMContentLoaded', function calc() {
 	// init.
