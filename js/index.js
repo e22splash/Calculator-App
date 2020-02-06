@@ -2,6 +2,9 @@
 
 window.addEventListener('DOMContentLoaded', function calc() {
 	// init.
+	let globalCalcStore = [];
+	let result = [];
+
 	const displayArea = document.querySelector('.js-display');
 	const CE = document.querySelector('.js-CE');
 	const C = document.querySelector('.js-C');
@@ -24,54 +27,70 @@ window.addEventListener('DOMContentLoaded', function calc() {
 	const dot = document.querySelector('.js-dot');
 	const equals = document.querySelector('.js-equals');
 
-	// Actions
+	// EventListener
 	CE.addEventListener('click', function() {
 		displayArea.textContent = '0';
+		globalCalcStore = [];
 	});
 	C.addEventListener('click', function() {
+		globalCalcStore.push(0);
 		displayArea.textContent = '0';
+		globalCalcStore = [];
 	});
 	deletion.addEventListener('click', function() {
 		displayArea.textContent = '';
 	});
 	devide.addEventListener('click', function() {
-		displayArea.textContent = '';
+		let result = deviding(globalCalcStore[0], globalCalcStore[1]);
+		displayArea.textContent = result;
 	});
 	seven.addEventListener('click', function() {
+		globalCalcStore.push(7);
 		displayArea.textContent = '7';
 	});
 	eight.addEventListener('click', function() {
+		globalCalcStore.push(8);
 		displayArea.textContent = '8';
 	});
 	nine.addEventListener('click', function() {
+		globalCalcStore.push(9);
 		displayArea.textContent = '9';
 	});
 	multiply.addEventListener('click', function() {
-		displayArea.textContent = '';
+		let result = multiplication(globalCalcStore[0], globalCalcStore[1]);
+		displayArea.textContent = result;
 	});
 	four.addEventListener('click', function() {
+		globalCalcStore.push(4);
 		displayArea.textContent = '4';
 	});
 	five.addEventListener('click', function() {
+		globalCalcStore.push(5);
 		displayArea.textContent = '5';
 	});
 	six.addEventListener('click', function() {
+		globalCalcStore.push(6);
 		displayArea.textContent = '6';
 	});
 	subtract.addEventListener('click', function() {
-		displayArea.textContent = '';
+		let result = subtracting(globalCalcStore[0], globalCalcStore[1]);
+		displayArea.textContent = result;
 	});
 	one.addEventListener('click', function() {
+		globalCalcStore.push(1);
 		displayArea.textContent = '1';
 	});
 	two.addEventListener('click', function() {
+		globalCalcStore.push(2);
 		displayArea.textContent = '2';
 	});
 	three.addEventListener('click', function() {
+		globalCalcStore.push(3);
 		displayArea.textContent = '3';
 	});
 	addition.addEventListener('click', function() {
-		displayArea.textContent = '';
+		let result = adding(globalCalcStore[0], globalCalcStore[1], globalCalcStore[2]);
+		displayArea.textContent = result;
 	});
 	plusMinus.addEventListener('click', function() {
 		displayArea.textContent = '';
@@ -86,3 +105,21 @@ window.addEventListener('DOMContentLoaded', function calc() {
 		displayArea.textContent = '';
 	});
 });
+
+// Actions
+
+function multiplication(a, b) {
+	return a * b;
+}
+
+function deviding(a, b) {
+	return a / b;
+}
+
+function subtracting(a, b) {
+	return a - b;
+}
+
+function adding(a, b) {
+	return a + b;
+}
