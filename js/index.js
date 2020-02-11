@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', function calc() {
 	// init.
 	let globalCalcStore = [];
 	let result = [];
+	let globalSignTracker = '';
 
 	const displayArea = document.querySelector('.js-display');
 	const CE = document.querySelector('.js-CE');
@@ -41,8 +42,7 @@ window.addEventListener('DOMContentLoaded', function calc() {
 		displayArea.textContent = '';
 	});
 	devide.addEventListener('click', function() {
-		let result = deviding(globalCalcStore[0], globalCalcStore[1]);
-		displayArea.textContent = result;
+		globalSignTracker = '/';
 	});
 	seven.addEventListener('click', function() {
 		globalCalcStore.push(7);
@@ -57,8 +57,7 @@ window.addEventListener('DOMContentLoaded', function calc() {
 		displayArea.textContent = '9';
 	});
 	multiply.addEventListener('click', function() {
-		let result = multiplication(globalCalcStore[0], globalCalcStore[1]);
-		displayArea.textContent = result;
+		globalSignTracker = '*';
 	});
 	four.addEventListener('click', function() {
 		globalCalcStore.push(4);
@@ -73,8 +72,7 @@ window.addEventListener('DOMContentLoaded', function calc() {
 		displayArea.textContent = '6';
 	});
 	subtract.addEventListener('click', function() {
-		let result = subtracting(globalCalcStore[0], globalCalcStore[1]);
-		displayArea.textContent = result;
+		globalSignTracker = '-';
 	});
 	one.addEventListener('click', function() {
 		globalCalcStore.push(1);
@@ -89,8 +87,7 @@ window.addEventListener('DOMContentLoaded', function calc() {
 		displayArea.textContent = '3';
 	});
 	addition.addEventListener('click', function() {
-		let result = adding(globalCalcStore[0], globalCalcStore[1], globalCalcStore[2]);
-		displayArea.textContent = result;
+		globalSignTracker = '+';
 	});
 	plusMinus.addEventListener('click', function() {
 		displayArea.textContent = '';
@@ -102,7 +99,7 @@ window.addEventListener('DOMContentLoaded', function calc() {
 		displayArea.textContent = '.';
 	});
 	equals.addEventListener('click', function() {
-		displayArea.textContent = '';
+		displayArea.textContent = processor(globalCalcStore, globalSignTracker);
 	});
 });
 
@@ -122,4 +119,16 @@ function subtracting(a, b) {
 
 function adding(a, b) {
 	return a + b;
+}
+
+function processor(nums, sign) {
+	if (sign === '+') {
+		return adding(nums[0], nums[1]);
+	} else if (sign === '*') {
+		return multiplication(nums[0], nums[1]);
+	} else if (sign === '-') {
+		return subtracting(nums[0], nums[1]);
+	} else if (sign === '/') {
+		return deviding(nums[0], nums[1]);
+	}
 }
